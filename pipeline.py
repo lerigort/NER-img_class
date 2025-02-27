@@ -1,12 +1,14 @@
-# pipeline.py (Adapted for BioBERT and User-Provided Text)
+# pipeline.py (Dynamic Image Selection)
+
 import argparse
 import torch
 from torchvision import transforms, models
 from PIL import Image
 import torch.nn as nn
-#No need in transformers and os - they are imported in inference_ner_bio
-from inference_ner_bio import predict_ner_bio # Import our BioBERT inference function
+from inference_ner_bio import predict_ner_bio  # Import our BioBERT inference function
 import os
+import random  # Import the 'random' module
+
 
 def predict_image_class(model_path, image_path, image_size, model_name):
     """Predicts the class of an image (image classification)."""
@@ -87,20 +89,28 @@ def predict_image_class(model_path, image_path, image_size, model_name):
 
     return predicted_class_name
 
+def main(image_dir, text, image_model_path, ner_model_name, image_size, image_model_name, animal_class):
+    # --- 1. Dynamic Image Selection ---
+    image_files = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f))]
+    if not image_files:
+        print(f"Error: No image files found in directory: {image_dir}")
+        return
 
+    # Randomly select an image
+    selected_image = random.choice(image_files)
+    image_path = os.path.join(image_dir, selected_image)
+    print(f"Selected image: {image_path}")  # Print the selected image path
 
-def main(image_path, text, image_model_path, ner_model_name, image_size, image_model_name):
-    # 1. Image Classification
+    # --- 2. Image Classification ---
     predicted_class = predict_image_class(image_model_path, image_path, image_size, image_model_name)
 
     if predicted_class is None:
         print("Image classification failed.")
         return
-
     print(f"Image Classification: Predicted animal: {predicted_class}")
 
-    # 2. NER (using BioBERT)
-    extracted_animal = predict_ner_bio(ner_model_name, text)  # Use the BioBERT inference
+    # --- 3. NER (using BioBERT) ---
+    extracted_animal = predict_ner_bio(ner_model_name, text)
 
     if extracted_animal is None:
         print("NER extraction failed.")
@@ -108,22 +118,19 @@ def main(image_path, text, image_model_path, ner_model_name, image_size, image_m
 
     print(f"NER Extraction: Animal name: {extracted_animal}")
 
-    # 3. Verification
-    #   Convert both to lowercase for case-insensitive comparison.
-    #   Use `in` to handle cases where NER extracts "dog" and image classification predicts "dogs"
+    # --- 4. Verification ---
     if predicted_class.lower() in extracted_animal.lower() or extracted_animal.lower() in predicted_class.lower():
         print("Verification: NER output matches image classification output.")
         result = True
     else:
         print("Verification: NER output DOES NOT MATCH image classification output.")
         result = False
-
     return result
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Image Classification and NER Pipeline.')
-    parser.add_argument('--image_path', type=str, required=True,
-                        help='Path to the input image.')
+    parser.add_argument('--image_dir', type=str, required=True,
+                        help='Path to the directory containing images.')
     parser.add_argument('--text', type=str, required=True,
                         help='Input text describing the image.')
     parser.add_argument('--image_model_path', type=str, required=True,
@@ -133,8 +140,10 @@ if __name__ == '__main__':
     parser.add_argument('--image_size', type=int, default=224,
                         help='Image size for classification.')
     parser.add_argument('--image_model_name', type=str, default='resnet18',
-                        help='Name of image model architecture.')
+                        help='Name of the image model architecture.')
+    parser.add_argument('--animal_class', type=str, default = 'dog',
+                        help='Class of the animal (for directory selection).') # Added for dynamic selection
+
     args = parser.parse_args()
 
-    result = main(args.image_path, args.text, args.image_model_path, args.ner_model_name, args.image_size, args.image_model_name)
-    print(f"Final result: {result}")
+    main(args.image_dir, args.text, args.image_model_path, args.ner_model_name, args.image_size, args.image_model_name, args.animal_class)
