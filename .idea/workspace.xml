@@ -4,23 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9302b6b3-4f93-4e95-9683-8678a49bbdd0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/NER+image_class.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/combine_ner_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_ner_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inference_image_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inference_ner.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inference_ner_bio.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/process_inaturalist_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train_image_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train_ner.py" afterDir="false" />
+    <list default="true" id="9302b6b3-4f93-4e95-9683-8678a49bbdd0" name="Changes" comment="dynamic image selection from the dir">
+      <change afterPath="$PROJECT_DIR$/download_models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inference_ner_general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inference_ner_bio.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_ner.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_ner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +27,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "lerigort"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lerigort/NER-img_class.git",
+    "accountId": "8be92c2b-8470-4f19-91b7-e1484ba124b1"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -69,6 +71,28 @@
       <option name="presentableId" value="Default" />
       <updated>1740387919230</updated>
     </task>
+    <task id="LOCAL-00001" summary="its been a long week">
+      <option name="closed" value="true" />
+      <created>1740649452261</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740649452261</updated>
+    </task>
+    <task id="LOCAL-00002" summary="dynamic image selection from the dir">
+      <option name="closed" value="true" />
+      <created>1740654017665</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1740654017665</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="its been a long week" />
+    <MESSAGE value="dynamic image selection from the dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="dynamic image selection from the dir" />
   </component>
 </project>
